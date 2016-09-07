@@ -5,9 +5,22 @@
  */
 
 var images = [];
+var administrator = sessionStorage.getItem("administrator");
+
+$(document).ajaxComplete(function(event,xhr,options)
+{
+    if (xhr.status == 401)
+    {
+        document.location.href = "login.html";
+    }
+});
 
 (function()
 {
+    if (administrator == null)
+    {
+        window.location.href = "login.html";
+    }
     init();
 }());
 

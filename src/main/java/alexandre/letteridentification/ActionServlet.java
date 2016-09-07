@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/ActionServlet"})
 public class ActionServlet extends HttpServlet {
     
-    public static String path = "C:\\Users\\alexa\\OneDrive\\Documents\\NetBeansProjects\\LetterIdentificationServer\\src\\main\\webapp";
+    public static String path = "C:\\Users\\alexa\\OneDrive\\Documents\\NetBeansProjects\\LetterRecognitionServer\\src\\main\\webapp";
     
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -38,53 +38,69 @@ public class ActionServlet extends HttpServlet {
         
         
         System.out.println("Action!");
-
-        switch(todo)
+        
+        if (request.getSession(false) == null && (request.getParameter("action").equals("training") || request.getParameter("action").equals("discard") || (request.getParameter("action").equals("list") && request.getParameter("type").equals("images_to_be_analyzed"))) && !request.getParameter("action").equals("login"))
         {
-            case "training" :
-                System.out.println("Training action!");
-                
-                TrainingAction acTraining = new TrainingAction();
-                acTraining.setServices(serv);
-                acTraining.execute(request, out);
-                
-                break;
-                
-            case "upload" :
-                System.out.println("Upload action!");
-                
-                UploadAction acUpload = new UploadAction();
-                acUpload.setServices(serv);
-                acUpload.execute(request, out);
-                
-                break;
-                
-            case "test" :
-                System.out.println("Test action!");
-                
-                TestAction acTest = new TestAction();
-                acTest.setServices(serv);
-                acTest.execute(request, out);
-                
-                break;
-                
-            case "list" :
-                System.out.println("List action!");
-                
-                ListAction acList = new ListAction();
-                acList.setServices(serv);
-                acList.execute(request, out);
-                
-                break;
-                
-            case "discard" :
-                System.out.println("Discard action!");
-                
-                DiscardAction acDiscard = new DiscardAction();
-                acDiscard.setServices(serv);
-                acDiscard.execute(request, out);
-                
-                break;
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
+        else
+        {
+            switch(todo)
+            {
+                case "training" :
+                    System.out.println("Training action!");
+
+                    TrainingAction acTraining = new TrainingAction();
+                    acTraining.setServices(serv);
+                    acTraining.execute(request, out);
+
+                    break;
+
+                case "upload" :
+                    System.out.println("Upload action!");
+
+                    UploadAction acUpload = new UploadAction();
+                    acUpload.setServices(serv);
+                    acUpload.execute(request, out);
+
+                    break;
+
+                case "test" :
+                    System.out.println("Test action!");
+
+                    TestAction acTest = new TestAction();
+                    acTest.setServices(serv);
+                    acTest.execute(request, out);
+
+                    break;
+
+                case "list" :
+                    System.out.println("List action!");
+
+                    ListAction acList = new ListAction();
+                    acList.setServices(serv);
+                    acList.execute(request, out);
+
+                    break;
+
+                case "discard" :
+                    System.out.println("Discard action!");
+
+                    DiscardAction acDiscard = new DiscardAction();
+                    acDiscard.setServices(serv);
+                    acDiscard.execute(request, out);
+
+                    break;
+
+                case "login" :
+                    System.out.println("Login action!");
+
+                    LoginAction acLogin = new LoginAction();
+                    acLogin.setServices(serv);
+                    acLogin.execute(request, out);
+
+                    break;
+            }
         }
     }
     
