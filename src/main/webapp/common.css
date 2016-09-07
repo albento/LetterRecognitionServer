@@ -1,0 +1,55 @@
+.clickable
+{
+    cursor: pointer;
+}
+
+.navbar.navbar-inverse {
+    background-color: rgb(60,141,188);
+}
+
+.navbar-header {
+    background-color: rgb(53,124,165);
+    padding-left: 15px;
+}
+
+.navbar-brand
+{
+    margin-left: 0px;
+}
+
+.navbar .navbar-inverse
+{
+    padding-left: 0px;
+}
+
+body
+{
+    background-color: white;
+    
+    /* prevent text selection on ui */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /* prevent scrolling in windows phone */
+    -ms-touch-action: none;
+    /* prevent selection highlight */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+button
+{
+    width: auto;
+}
+
+img
+{
+    width: 100%;
+   display: block;
+   float: left;
+}
+
+.container-fluid
+{
+    padding-left: 0px;
+}
